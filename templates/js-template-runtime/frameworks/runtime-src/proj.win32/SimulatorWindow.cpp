@@ -62,7 +62,7 @@ void createViewMenu()
         item.dwTypeData = (LPTSTR)menuName.c_str();
         item.cch = menuName.length();
 
-        InsertMenuItem(viewMenu, 0, TRUE, &item);
+        //InsertMenuItem(viewMenu, 0, TRUE, &item);
     }
 }
 
@@ -341,7 +341,8 @@ void createSimulator(const char* viewName, float width, float height, bool isLan
     }
     g_windTop = ConfigParser::getInstance()->isWindowTop();
 
-    g_eglView = GLViewImpl::createWithRect(viewName,Rect(0,0,width,height),frameZoomFactor);
+    //g_eglView = GLViewImpl::createWithRect(viewName,Rect(0,0,width,height),frameZoomFactor);
+	g_eglView = GLViewImpl::createWithWindowedFullScreen(viewName,Rect(0,0,width,height),frameZoomFactor);
     auto director = Director::getInstance();
     director->setOpenGLView(g_eglView);
 

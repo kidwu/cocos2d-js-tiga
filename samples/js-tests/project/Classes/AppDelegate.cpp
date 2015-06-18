@@ -71,13 +71,18 @@ bool AppDelegate::applicationDidFinishLaunching()
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WP8 || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
         glview = cocos2d::GLViewImpl::create("js-tests");
 #else
-        glview = cocos2d::GLViewImpl::createWithRect("js-tests", Rect(0,0,900,640));
+        //glview = cocos2d::GLViewImpl::createWithRect("js-tests", Rect(0,0,900,640));
+		glview = cocos2d::GLViewImpl::createWithWindowedFullScreen("js-tests", Rect(0,0,1680,1050));
 #endif
         director->setOpenGLView(glview);
     }
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
+	//Application::getInstance()->setThreadRunCpuCore(2);
+	Application::getInstance()->setThreadPriority(THREAD_PRIORITY_HIGHEST);
+    //Application::getInstance()->setSleepMs(8);
+	//Application::getInstance()->setFullSpeedRender(true);
 
     ScriptingCore* sc = ScriptingCore::getInstance();
     sc->addRegisterCallback(register_all_cocos2dx);
