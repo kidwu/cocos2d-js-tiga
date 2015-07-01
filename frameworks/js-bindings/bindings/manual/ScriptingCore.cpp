@@ -85,6 +85,7 @@ static std::mutex g_rwMutex;
 static int clientSocket = -1;
 static uint32_t s_nestedLoopLevel = 0;
 
+
 // server entry point for the bg thread
 static void serverEntryPoint(unsigned int port);
 
@@ -102,6 +103,8 @@ static std::unordered_map<std::string, JSScript*> filename_script;
 static std::unordered_map<int,int> ports_sockets;
 // name ~> globals
 static std::unordered_map<std::string, JSObject*> globals;
+
+ScriptingCore* ScriptingCore::m_pInstance = NULL;
 
 static void cc_closesocket(int fd)
 {

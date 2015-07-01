@@ -67,15 +67,19 @@ private:
 
     bool _callFromScript;
     ScriptingCore();
+	static ScriptingCore* m_pInstance;
 public:
     ~ScriptingCore();
 
+	static void setInstance(ScriptingCore * inst) {
+		m_pInstance = inst;
+	};
+
     static ScriptingCore *getInstance() {
-        static ScriptingCore* pInstance = NULL;
-        if (pInstance == NULL) {
-            pInstance = new ScriptingCore();
+        if (m_pInstance == NULL) {
+           m_pInstance = new ScriptingCore();
         }
-        return pInstance;
+        return m_pInstance;
     };
 
     virtual cocos2d::ccScriptType getScriptType() { return cocos2d::kScriptTypeJavascript; };
